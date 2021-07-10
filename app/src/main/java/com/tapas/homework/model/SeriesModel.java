@@ -1,10 +1,12 @@
 package com.tapas.homework.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /*
  * Created by jiHoon on 2021. 7. 9.
  */
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class SeriesModel {
     private int id;

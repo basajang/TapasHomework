@@ -4,8 +4,8 @@ package com.tapas.homework.model;
  */
 
 public class PaginationModel {
-    private int page;
-    private boolean has_next = false;
+    private int page  = 1;
+    private boolean has_next = true;
 
     public int getPage() {
         return page;

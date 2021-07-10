@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">TapasHomeWork</string>
+    <string name="textview_empty">                                                                                              </string>
+    <string name="purchase_request">Available after purchase.</string>
+    <string name="not_implemented">Not implemented yet.</string>
+    <string name="can_not_be_used">can not be used.</string>
+    <string name="on_sale_msg">"It&apos;s on discount."</string>
+
+    <string name="wait_or_must_pay">Wait or must pay.</string>
+    <string name="creators">creators : </string>
+
+
 </resources>

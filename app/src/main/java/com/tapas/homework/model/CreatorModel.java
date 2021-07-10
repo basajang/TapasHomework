@@ -1,4 +1,5 @@
-package com.tapas.homework.model;/*
+package com.tapas.homework.model;
+/*
  * Created by jiHoon on 2021. 7. 9.
  */
 

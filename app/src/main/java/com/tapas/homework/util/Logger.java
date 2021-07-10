@@ -1,6 +1,4 @@
-package com.tapas.homework.util;/*
- * Created by jiHoon on 2021. 7. 10.
- */
+package com.tapas.homework.util;
 
 import android.util.Log;
 
@@ -9,6 +7,9 @@ import androidx.annotation.Nullable;
 import retrofit2.Call;
 import retrofit2.Response;
 
+/*
+ * Created by jiHoon on 2021. 7. 10.
+ */
 public class Logger {
 
     private static int MAX_LINE_TEXT = 500;

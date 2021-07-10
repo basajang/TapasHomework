@@ -1,6 +1,7 @@
 package com.tapas.homework.api.client;
 
 import com.tapas.homework.api.ApiService;
+import com.tapas.homework.api.interceptor.LoggingInterceptor;
 
 import java.util.concurrent.TimeUnit;
 
@@ -9,6 +10,10 @@ import okhttp3.EventListener;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+/*
+ * Created by jiHoon on 2021. 7. 11.
+ */
 
 public class ApiClient implements IApiClient {
 
@@ -22,7 +27,8 @@ public class ApiClient implements IApiClient {
     }
 
     public ApiClient( boolean useLoadingUI) {
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        OkHttpClient.Builder builder = new OkHttpClient.Builder()
+                .addInterceptor(new LoggingInterceptor());
         if (useLoadingUI) {
             builder.eventListener(new EventListener() {
                 @Override

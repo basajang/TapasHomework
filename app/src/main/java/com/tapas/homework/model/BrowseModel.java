@@ -1,13 +1,15 @@
 package com.tapas.homework.model;
+
+import java.util.ArrayList;
+
 /*
- * Created by jiHoon on 2021. 7. 9.
+ * Created by jiHoon on 2021. 7. 10.
  */
 
-import java.util.List;
 
 public class BrowseModel {
     private PaginationModel pagination;
-    private List<SeriesModel> series;
+    private ArrayList<SeriesModel> series;
 
     public PaginationModel getPagination() {
         return pagination;
@@ -17,11 +19,11 @@ public class BrowseModel {
         this.pagination = pagination;
     }
 
-    public List<SeriesModel> getSeries() {
+    public ArrayList<SeriesModel> getSeries() {
         return series;
     }
 
-    public void setSeries(List<SeriesModel> series) {
+    public void setSeries(ArrayList<SeriesModel> series) {
         this.series = series;
     }
 
