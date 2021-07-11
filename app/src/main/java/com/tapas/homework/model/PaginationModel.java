@@ -3,7 +3,9 @@ package com.tapas.homework.model;
  * Created by jiHoon on 2021. 7. 9.
  */
 
-public class PaginationModel {
+import androidx.lifecycle.MutableLiveData;
+
+public class PaginationModel  extends MutableLiveData {
     private int page  = 1;
     private boolean has_next = true;
 

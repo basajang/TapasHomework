@@ -1,5 +1,8 @@
 package com.tapas.homework.model;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -212,6 +215,26 @@ public class SeriesModel {
 
     public void setRect_banner_url(String rect_banner_url) {
         this.rect_banner_url = rect_banner_url;
+    }
+
+    public static DiffUtil.ItemCallback<SeriesModel> DIFF_CALLBACK = new DiffUtil.ItemCallback<SeriesModel>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull SeriesModel oldItem, @NonNull SeriesModel newItem) {
+            return oldItem.id == newItem.id;
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull SeriesModel oldItem, @NonNull SeriesModel newItem) {
+            return oldItem.equals(newItem);
+        }
+    };
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+
+        SeriesModel article = (SeriesModel) obj;
+        return article.id == this.id;
     }
 
     @Override

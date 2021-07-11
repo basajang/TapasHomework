@@ -13,6 +13,7 @@ import com.tapas.homework.api.client.ApiClient;
 import com.tapas.homework.model.BrowseModel;
 import com.tapas.homework.model.PaginationModel;
 
+import com.tapas.homework.model.SeriesModel;
 import com.tapas.homework.ui.decoration.SpacesItemDecoration;
 import com.tapas.homework.util.Logger;
 
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private SkeletonRecyclerView rcBrowse;
     private BrowseAdapter browseAdapter;
 
+    private BrowseViewModel browseViewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,41 +47,25 @@ public class MainActivity extends AppCompatActivity {
         rcBrowse = findViewById(R.id.rcBrowse);
 
         browseAdapter = new BrowseAdapter(this);
-        rcBrowse.setAdapter(browseAdapter);
+
         rcBrowse.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rcBrowse.addItemDecoration(new SpacesItemDecoration(15));
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,LinearLayoutManager.VERTICAL);
         dividerItemDecoration.setDrawable(this.getDrawable(R.drawable.divider_color));
 
+        browseViewModel = new BrowseViewModel();
+
         rcBrowse.addItemDecoration(dividerItemDecoration);
-        if(paginationModel.getPage() == 1){
-            loadSeries(paginationModel.getPage());
-        }
+
+        browseViewModel.getPagedListLiveData().observe(this, series -> {browseAdapter.submitList(series);});
+
+
+        rcBrowse.setAdapter(browseAdapter);
+        rcBrowse.stopLoading();
     }
 
 
 
 
-    private void loadSeries(int pageNum){
-
-        ApiClient.getApiInstance().getApiService().getBrowse(seriesType, pageNum).enqueue(new Callback<BrowseModel>() {
-            @Override
-            public void onResponse(Call<BrowseModel> call, Response<BrowseModel> response) {
-
-                BrowseModel browseModel = response.body();
-                paginationModel = browseModel.getPagination();
-
-                Logger.d(TAG, browseModel.getSeries());
-                browseAdapter.addItemList(browseModel.getSeries());
-                rcBrowse.stopLoading();
-            }
-
-            @Override
-            public void onFailure(Call<BrowseModel> call, Throwable t) {
-                Log.d(TAG, "onFailure: "+call.toString());
-                t.fillInStackTrace();
-            }
-        });
-    }
 }

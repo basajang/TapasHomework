@@ -6,24 +6,25 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.paging.PagedListAdapter;
 
 import com.tapas.homework.R;
-import com.tapas.homework.model.SeriesModel;
 
-import java.util.ArrayList;
+import com.tapas.homework.model.BrowseModel;
+import com.tapas.homework.model.SeriesModel;
+import com.tapas.homework.util.Logger;
+
 /*
  * Created by jiHoon on 2021. 7. 10.
  */
 
-public class BrowseAdapter extends RecyclerView.Adapter<SeriesViewHolder>{
+public class BrowseAdapter extends PagedListAdapter<SeriesModel,SeriesViewHolder> {
     private final String TAG = this.getClass().getSimpleName();
     private Activity activity;
-    private ArrayList<SeriesModel> seriesModelList = new ArrayList<>();
     private int visibleCount = 0;
 
-
-    public BrowseAdapter(Activity activity) {
+    public BrowseAdapter( Activity activity) {
+        super(SeriesModel.DIFF_CALLBACK);
         this.activity = activity;
     }
 
@@ -35,32 +36,6 @@ public class BrowseAdapter extends RecyclerView.Adapter<SeriesViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull SeriesViewHolder holder, int position) {
-
-        holder.bind(seriesModelList.get(position));
-    }
-
-    @Override
-    public int getItemCount() {
-
-        return seriesModelList.size();
-    }
-
-
-    public void addItemList(ArrayList<SeriesModel> modelList){
-
-
-        seriesModelList.addAll(modelList);
-        if(visibleCount == 0){
-            notifyDataSetChanged();
-            visibleCount = modelList.size();
-        }else{
-            notifyItemRangeInserted(visibleCount, modelList.size());
-        }
-
-    }
-
-
-    public ArrayList<SeriesModel> getSeriesModelList() {
-        return seriesModelList;
+        holder.bind(getItem(position));
     }
 }

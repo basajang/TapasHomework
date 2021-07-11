@@ -5,11 +5,9 @@ package com.tapas.homework.api;
  */
 
 import com.tapas.homework.model.BrowseModel;
-import com.tapas.homework.model.PaginationModel;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiService {
