@@ -38,13 +38,13 @@ public class BrowsePageKeyedDataSource extends PageKeyedDataSource<Integer, Seri
 
     @Override
     public void loadInitial(@NonNull PageKeyedDataSource.LoadInitialParams<Integer> params, @NonNull PageKeyedDataSource.LoadInitialCallback<Integer, SeriesModel> callback) {
-        Logger.d(TAG, "loadInitial      " );
-        if(paginationModel.isHas_next()){
+        Logger.d(TAG, "loadInitial      ");
+        if (paginationModel.isHas_next()) {
             ApiClient.getApiInstance().getApiService().getBrowse(seriesType, 1).enqueue(new Callback<BrowseModel>() {
                 @Override
                 public void onResponse(Call<BrowseModel> call, Response<BrowseModel> response) {
-                    if(response.isSuccessful()){
-                        paginationModel.postValue((PaginationModel)response.body().getPagination());
+                    if (response.isSuccessful()) {
+                        paginationModel = response.body().getPagination();
                         callback.onResult(response.body().getSeries(), null, response.body().getPagination().getPage());
                     }
                 }
@@ -64,17 +64,17 @@ public class BrowsePageKeyedDataSource extends PageKeyedDataSource<Integer, Seri
 
     @Override
     public void loadAfter(@NonNull PageKeyedDataSource.LoadParams<Integer> params, @NonNull PageKeyedDataSource.LoadCallback<Integer, SeriesModel> callback) {
-        Logger.d(TAG, "loading : "+params.key+ " size :"+params.requestedLoadSize);
 
-        if(paginationModel.isHas_next()){
+        Logger.d(TAG, "loadAfter  paginationModel  "+paginationModel.toString() );
+        if (paginationModel.isHas_next()) {
+
             ApiClient.getApiInstance().getApiService().getBrowse(seriesType, params.key).enqueue(new Callback<BrowseModel>() {
                 @Override
                 public void onResponse(Call<BrowseModel> call, Response<BrowseModel> response) {
-                    if(response.isSuccessful()){
-                        if (response.body().getPagination().isHas_next()) {
-                            callback.onResult(response.body().getSeries(),  response.body().getPagination().getPage());
-                            paginationModel.postValue((PaginationModel)response.body().getPagination());
-                        }
+                    if (response.isSuccessful()) {
+                        callback.onResult(response.body().getSeries(), response.body().getPagination().getPage());
+                        paginationModel = response.body().getPagination();
+//                        paginationModel.postValue((PaginationModel) response.body().getPagination());
                     }
                 }
 

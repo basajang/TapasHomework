@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.paging.PagedList;
 import androidx.paging.PagedListAdapter;
 
 import com.tapas.homework.R;
@@ -36,6 +38,6 @@ public class BrowseAdapter extends PagedListAdapter<SeriesModel,SeriesViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull SeriesViewHolder holder, int position) {
-        holder.bind(getItem(position));
+        holder.bind(getItem(position), position);
     }
 }

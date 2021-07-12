@@ -3,6 +3,8 @@ package com.tapas.homework.model;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 
+import com.tapas.homework.util.Logger;
+
 import java.util.ArrayList;
 
 /*
@@ -44,6 +46,7 @@ public class BrowseModel {
     public static DiffUtil.ItemCallback<BrowseModel> DIFF_CALLBACK = new DiffUtil.ItemCallback<BrowseModel>() {
         @Override
         public boolean areItemsTheSame(@NonNull BrowseModel oldItem, @NonNull BrowseModel newItem) {
+            Logger.d("BrowseModel", oldItem.id);
             return oldItem.id == newItem.id;
         }
 

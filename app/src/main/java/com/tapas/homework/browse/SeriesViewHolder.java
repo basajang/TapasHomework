@@ -22,7 +22,6 @@ import com.tapas.homework.util.Logger;
  * Created by jiHoon on 2021. 7. 10.
  */
 
-
 public class SeriesViewHolder extends RecyclerView.ViewHolder {
     private final String TAG = this.getClass().getSimpleName();
     private ImageView ivBookCover;
@@ -48,7 +47,7 @@ public class SeriesViewHolder extends RecyclerView.ViewHolder {
     }
 
 
-    public void bind(SeriesModel seriesModel) {
+    public void bind(SeriesModel seriesModel, int num) {
         model = seriesModel;
 
         RequestManager glide = Glide.with(BaseApplication.getContext());
@@ -63,7 +62,7 @@ public class SeriesViewHolder extends RecyclerView.ViewHolder {
         if (title == null) {
             title = "";
         }
-        tvTitle.setText(title);
+        tvTitle.setText(num+"   "+title);
 
         int rgb = Color.parseColor(model.getRgb_hex());
         liItemBack.setBackgroundColor(rgb);

@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.paging.LivePagedListBuilder;
 import androidx.paging.PagedList;
 
+import com.tapas.homework.model.PaginationModel;
 import com.tapas.homework.model.SeriesModel;
 import com.tapas.homework.utils.NetworkState;
 
@@ -17,7 +18,7 @@ import java.util.concurrent.Executors;
 public class BrowseViewModel extends ViewModel {
 
     private Executor executor;
-    private LiveData<NetworkState> networkState;
+    private LiveData<PaginationModel> networkState;
     private LiveData<PagedList<SeriesModel>> pagedListLiveData;
 
     public BrowseViewModel() {
@@ -33,8 +34,9 @@ public class BrowseViewModel extends ViewModel {
         PagedList.Config pagedListConfig =
                 (new PagedList.Config.Builder())
                         .setEnablePlaceholders(true)
-                        .setInitialLoadSizeHint(5)
-                        .setPageSize(20).build();
+                        .setPageSize(10)
+                        .setPrefetchDistance(5)
+                        .setInitialLoadSizeHint(10).build();
 
         pagedListLiveData = (new LivePagedListBuilder(browseFactory, pagedListConfig))
                 .setFetchExecutor(executor)
@@ -42,9 +44,6 @@ public class BrowseViewModel extends ViewModel {
 
     }
 
-    public LiveData<NetworkState> getNetworkState() {
-        return networkState;
-    }
 
     public LiveData<PagedList<SeriesModel>> getPagedListLiveData() {
         return pagedListLiveData;
