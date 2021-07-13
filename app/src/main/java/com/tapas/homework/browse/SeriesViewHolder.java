@@ -1,5 +1,7 @@
 package com.tapas.homework.browse;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -15,8 +17,14 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.tapas.homework.BaseApplication;
 import com.tapas.homework.R;
+import com.tapas.homework.api.client.ApiClient;
 import com.tapas.homework.model.SeriesModel;
+import com.tapas.homework.seriesdetail.SeriesDetailActivity;
 import com.tapas.homework.util.Logger;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /*
  * Created by jiHoon on 2021. 7. 10.
@@ -32,7 +40,7 @@ public class SeriesViewHolder extends RecyclerView.ViewHolder {
     private FrameLayout flRestricted;
     private LinearLayout liItemBack, flPaid;
 
-    private Toast toast = new Toast(BaseApplication.getContext());
+    private Activity activity;
 
     public SeriesViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -47,9 +55,9 @@ public class SeriesViewHolder extends RecyclerView.ViewHolder {
     }
 
 
-    public void bind(SeriesModel seriesModel, int num) {
+    public void bind(SeriesModel seriesModel, Activity activity) {
         model = seriesModel;
-
+        this.activity = activity;
         RequestManager glide = Glide.with(BaseApplication.getContext());
         if (model.getBook_cover_url() != null) {
 
@@ -62,7 +70,7 @@ public class SeriesViewHolder extends RecyclerView.ViewHolder {
         if (title == null) {
             title = "";
         }
-        tvTitle.setText(num+"   "+title);
+        tvTitle.setText(title);
 
         int rgb = Color.parseColor(model.getRgb_hex());
         liItemBack.setBackgroundColor(rgb);
@@ -84,6 +92,33 @@ public class SeriesViewHolder extends RecyclerView.ViewHolder {
         if(stringBuilder.length() > 10){
             tvCreators.setSelected(true);
         }
+
+
+        liItemBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ApiClient.getApiInstance().getApiService().getSeries(seriesModel.getId()).enqueue(new Callback<SeriesModel>() {
+                    @Override
+                    public void onResponse(Call<SeriesModel> call, Response<SeriesModel> response) {
+                        if(response.isSuccessful()){
+
+                            Logger.d(TAG, response.body());
+
+                            Intent intent = new Intent(activity, SeriesDetailActivity.class);
+                            intent.putExtra("seriesModel", response.body());
+                            activity.startActivity(intent);
+
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<SeriesModel> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
     }
 
 

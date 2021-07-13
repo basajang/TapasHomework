@@ -1,5 +1,8 @@
 package com.tapas.homework.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 
@@ -11,7 +14,8 @@ import java.util.List;
  */
 
 
-public class SeriesModel {
+public class SeriesModel implements Parcelable {
+
     private int id;
     private String title;
     private String sale_type;
@@ -40,6 +44,29 @@ public class SeriesModel {
     private GenreModel genre;
 
     private String rect_banner_url;
+
+    public SeriesModel(Parcel parcel) {
+
+        id = parcel.readInt();
+        title = parcel.readString();
+        sale_type = parcel.readString();
+        book_cover_url = parcel.readString();
+        age_rating = parcel.readInt();
+        rgb_hex = parcel.readString();
+        restricted = parcel.readByte() != 0;
+        restricted_msg = parcel.readString();
+        onSale = parcel.readByte() != 0;
+        discount_rate = parcel.readInt();
+        sale_start_date = parcel.readString();
+        sale_end_date = parcel.readString();
+        subscribe_cnt = parcel.readInt();
+        like_cnt = parcel.readInt();
+        view_cnt = parcel.readInt();
+        up = parcel.readByte() != 0;
+        blurb = parcel.readString();
+        sub_title = parcel.readString();
+        rect_banner_url = parcel.readString();
+    }
 
     public int getId() {
         return id;
@@ -217,6 +244,7 @@ public class SeriesModel {
         this.rect_banner_url = rect_banner_url;
     }
 
+
     public static DiffUtil.ItemCallback<SeriesModel> DIFF_CALLBACK = new DiffUtil.ItemCallback<SeriesModel>() {
         @Override
         public boolean areItemsTheSame(@NonNull SeriesModel oldItem, @NonNull SeriesModel newItem) {
@@ -228,6 +256,11 @@ public class SeriesModel {
             return oldItem.equals(newItem);
         }
     };
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == this)
@@ -263,5 +296,40 @@ public class SeriesModel {
                 ", genre=" + genre +
                 ", rect_banner_url='" + rect_banner_url + '\'' +
                 '}';
+    }
+
+    public static final Creator<SeriesModel> CREATOR = new Creator<SeriesModel>() {
+        @Override
+        public SeriesModel createFromParcel(Parcel in) {
+            return new SeriesModel(in);
+        }
+
+        @Override
+        public SeriesModel[] newArray(int size) {
+            return new SeriesModel[size];
+        }
+    };
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(title);
+        dest.writeString(sale_type);
+        dest.writeString(book_cover_url);
+        dest.writeInt(age_rating);
+        dest.writeString(rgb_hex);
+        dest.writeByte((byte) (restricted ? 1 : 0));
+        dest.writeString(restricted_msg);
+        dest.writeByte((byte) (onSale ? 1 : 0));
+        dest.writeInt(discount_rate);
+        dest.writeString(sale_start_date);
+        dest.writeString(sale_end_date);
+        dest.writeInt(subscribe_cnt);
+        dest.writeInt(like_cnt);
+        dest.writeInt(view_cnt);
+        dest.writeByte((byte) (up ? 1 : 0));
+        dest.writeString(blurb);
+        dest.writeString(sub_title);
+        dest.writeString(rect_banner_url);
     }
 }

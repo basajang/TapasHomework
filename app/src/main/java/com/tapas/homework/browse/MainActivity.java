@@ -4,23 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.tapas.homework.R;
-import com.tapas.homework.api.client.ApiClient;
-import com.tapas.homework.model.BrowseModel;
 import com.tapas.homework.model.PaginationModel;
 
-import com.tapas.homework.model.SeriesModel;
 import com.tapas.homework.ui.decoration.SpacesItemDecoration;
-import com.tapas.homework.util.Logger;
 
 import aglibs.loading.skeleton.layout.SkeletonRecyclerView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /*
  * Created by jiHoon on 2021. 7. 10.
@@ -33,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private PaginationModel paginationModel = new PaginationModel();
 
-    private SkeletonRecyclerView rcBrowse;
+    private RecyclerView rcBrowse;
     private BrowseAdapter browseAdapter;
 
     private BrowseViewModel browseViewModel;
@@ -62,7 +55,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         rcBrowse.setAdapter(browseAdapter);
-        rcBrowse.stopLoading();
+
+
+
     }
 
 

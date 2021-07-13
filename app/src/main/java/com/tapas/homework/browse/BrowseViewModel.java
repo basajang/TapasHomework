@@ -10,7 +10,6 @@ import androidx.paging.PagedList;
 
 import com.tapas.homework.model.PaginationModel;
 import com.tapas.homework.model.SeriesModel;
-import com.tapas.homework.utils.NetworkState;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;

@@ -9,5 +9,12 @@
     <string name="wait_or_must_pay">Wait or must pay.</string>
     <string name="creators">creators : </string>
 
+    <string name="subscribe_cnt">Subscribe : </string>
+    <string name="like_cnt">Like : </string>
+    <string name="view_cnt">View : </string>
+
+
+
+
 
 </resources>

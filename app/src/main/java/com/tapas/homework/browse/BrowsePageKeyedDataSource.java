@@ -2,11 +2,7 @@ package com.tapas.homework.browse;/*
  * Created by jiHoon on 2021. 7. 11.
  */
 
-import android.app.usage.NetworkStats;
-import android.util.Log;
-
 import androidx.annotation.NonNull;
-import androidx.lifecycle.MutableLiveData;
 import androidx.paging.PageKeyedDataSource;
 
 import com.tapas.homework.api.client.ApiClient;
@@ -14,7 +10,6 @@ import com.tapas.homework.model.BrowseModel;
 import com.tapas.homework.model.PaginationModel;
 import com.tapas.homework.model.SeriesModel;
 import com.tapas.homework.util.Logger;
-import com.tapas.homework.utils.NetworkState;
 
 import retrofit2.Call;
 import retrofit2.Callback;

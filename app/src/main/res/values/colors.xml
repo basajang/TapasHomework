@@ -8,8 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="color_base_000_background">#ffffff</color>
     <color name="color_base_010_text">#e6e6e6</color>
     <color name="color_base_030_disabled_text">#99ffffff</color>
-
+    <color name="color_base_035_meduim">#9d9d9d</color>
     <color name="color_base_080_back_drop_high">#cc000000</color>
 </resources>
