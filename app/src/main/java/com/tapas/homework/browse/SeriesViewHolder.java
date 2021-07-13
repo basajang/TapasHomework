@@ -111,11 +111,10 @@ public class SeriesViewHolder extends RecyclerView.ViewHolder {
         switch (model.getSale_type()) {
             case "PAID":
                 flPaid.setVisibility(View.VISIBLE);
-
                 break;
             case "FREE":
+                flPaid.setVisibility(View.GONE);
                 break;
-
             case "WAIT_OR_MUST_PAY":
                 flPaid.setVisibility(View.VISIBLE);
                 tvPaidMsg.setText(R.string.wait_or_must_pay);
