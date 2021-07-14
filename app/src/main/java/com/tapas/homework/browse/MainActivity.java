@@ -12,9 +12,6 @@ import com.tapas.homework.R;
 import com.tapas.homework.model.PaginationModel;
 
 import com.tapas.homework.ui.decoration.SpacesItemDecoration;
-
-import aglibs.loading.skeleton.layout.SkeletonRecyclerView;
-
 /*
  * Created by jiHoon on 2021. 7. 10.
  */

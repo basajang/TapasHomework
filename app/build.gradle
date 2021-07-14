@@ -50,7 +50,5 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
-    // 스켈레톤 로딩
-    implementation 'com.github.AgnaldoNP:AGSkeletonLoading:1.2'
 
 }
