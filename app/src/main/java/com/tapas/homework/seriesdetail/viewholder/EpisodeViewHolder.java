@@ -1,48 +1,46 @@
 package com.tapas.homework.seriesdetail.viewholder;
 
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.tapas.homework.api.client.ApiClient;
+import com.bumptech.glide.Glide;
+import com.tapas.homework.BaseApplication;
+import com.tapas.homework.R;
 import com.tapas.homework.model.EpisodeModel;
-import com.tapas.homework.model.SeriesModel;
-import com.tapas.homework.util.Logger;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
- * Created by james on 2021-07-13.
+ * Created by james on 2021-07-14.
  */
 public class EpisodeViewHolder extends RecyclerView.ViewHolder {
-    private final String TAG = this.getClass().getSimpleName();
-    private SeriesModel model;
+
+    private TextView tvScene, tvtitle, tvViewCnt;
+    private ImageView ivThumb;
+
+    private EpisodeModel model;
 
     public EpisodeViewHolder(@NonNull View itemView) {
         super(itemView);
+
+        tvScene = itemView.findViewById(R.id.tvScene);
+        tvtitle = itemView.findViewById(R.id.tvtitle);
+        tvViewCnt = itemView.findViewById(R.id.tvViewCnt);
+        ivThumb = itemView.findViewById(R.id.ivThumb);
+
     }
 
-    public void bind(SeriesModel seriesModel){
-        model = seriesModel;
-        ApiClient.getApiInstance().getApiService().getSeriesEpisodes(model.getId()).enqueue(new Callback<List<EpisodeModel>>() {
-            @Override
-            public void onResponse(Call<List<EpisodeModel>> call, Response<List<EpisodeModel>> response) {
-                if(response.isSuccessful()){
-                    for(EpisodeModel episodeModel : response.body()){
-                        Logger.d(TAG, episodeModel.getTitle());
-                    }
-                }
-            }
+    public void bind(EpisodeModel episodeModel){
+        model = episodeModel;
+        tvScene.setText(model.getScene()+"");
+        tvtitle.setText(model.getTitle()+"");
+        tvViewCnt.setText(model.getView_cnt()+"");
 
-            @Override
-            public void onFailure(Call<List<EpisodeModel>> call, Throwable t) {
-
-            }
-        });
+        Glide.with(BaseApplication.getContext())
+                .load(model.getThumb().getFile_url())
+                .override(model.getThumb().getHeight(), model.getThumb().getWidth())
+                .into(ivThumb);
     }
 }

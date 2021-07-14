@@ -10,13 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tapas.homework.R;
 import com.tapas.homework.model.SeriesModel;
-import com.tapas.homework.seriesdetail.viewholder.EpisodeViewHolder;
+import com.tapas.homework.seriesdetail.viewholder.EpisodeListViewHolder;
 import com.tapas.homework.seriesdetail.viewholder.InfoViewHolder;
 import com.tapas.homework.seriesdetail.viewholder.StateViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by james on 2021-07-13.
@@ -54,7 +53,7 @@ public class SeriesDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             case EPISODE:
                 View rowSeriesDetailEpisode = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.row_series_detail_episode, parent, false);
-                return new EpisodeViewHolder(rowSeriesDetailEpisode);
+                return new EpisodeListViewHolder(rowSeriesDetailEpisode);
 
             default:
                 return null;
@@ -73,7 +72,7 @@ public class SeriesDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 ((StateViewHolder)holder).bind(model);
                 break;
             case EPISODE:
-                ((EpisodeViewHolder)holder).bind(model);
+                ((EpisodeListViewHolder)holder).bind(model);
                 break;
         }
 
