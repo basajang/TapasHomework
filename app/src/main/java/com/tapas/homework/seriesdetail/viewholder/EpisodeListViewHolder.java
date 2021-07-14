@@ -23,7 +23,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by james on 2021-07-13.
+ * Created by jihoon on 2021-07-13.
  */
 public class EpisodeListViewHolder extends RecyclerView.ViewHolder {
     private final String TAG = this.getClass().getSimpleName();

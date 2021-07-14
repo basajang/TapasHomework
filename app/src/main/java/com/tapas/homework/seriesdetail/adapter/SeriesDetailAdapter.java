@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by james on 2021-07-13.
+ * Created by jihoon on 2021-07-13.
  */
 public class SeriesDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 

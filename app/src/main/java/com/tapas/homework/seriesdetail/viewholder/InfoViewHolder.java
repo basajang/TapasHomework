@@ -20,7 +20,7 @@ import com.tapas.homework.util.Logger;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by james on 2021-07-13.
+ * Created by jihoon on 2021-07-13.
  */
 public class InfoViewHolder extends RecyclerView.ViewHolder{
 

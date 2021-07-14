@@ -10,7 +10,7 @@ import com.tapas.homework.R;
 import com.tapas.homework.model.SeriesModel;
 
 /**
- * Created by james on 2021-07-13.
+ * Created by jihoon on 2021-07-13.
  */
 public class StateViewHolder extends RecyclerView.ViewHolder {
 

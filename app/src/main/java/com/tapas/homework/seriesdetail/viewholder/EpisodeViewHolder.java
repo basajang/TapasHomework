@@ -13,7 +13,7 @@ import com.tapas.homework.R;
 import com.tapas.homework.model.EpisodeModel;
 
 /**
- * Created by james on 2021-07-14.
+ * Created by jihoon on 2021-07-14.
  */
 public class EpisodeViewHolder extends RecyclerView.ViewHolder {
 
